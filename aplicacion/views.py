@@ -7,3 +7,4 @@ from .models import Song
 class ListSong(ListView):
     model = Song
     template_name = 'aplicacion/home.html'
+    context_object_name = 'Song'
