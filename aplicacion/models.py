@@ -29,7 +29,6 @@ class Song(models.Model):
     artist=models.ManyToManyField(Artist)
     lyrics=models.TextField()
     release_date=models.DateField()
-    published_on=models.DateTimeField(default=timezone.now)
     cover=models.ImageField(upload_to='covers/',blank=True,null=True)
     SpotifyLink=models.TextField(max_length=150,blank=True,null=True)
     YoutubeLink=models.TextField(max_length=150, blank=True, null=True)
