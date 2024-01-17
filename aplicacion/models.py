@@ -13,13 +13,9 @@ class User(AbstractUser):
 class Artist(models.Model):
     name=models.CharField(max_length=70)
     born=models.DateField(blank=True,null=True)
-    age= models.IntegerField(blank=True,null=True)
-    bibiography=models.TextField()
+    biography=models.TextField()
     picture=models.ImageField(upload_to='pictures/',blank=True,null=True)
 
-    def ageCalc(self, *args, **kwargs):
-        if self.born:
-            age=timezone.now().year-self.born.year
 
     def __str__ (self):
         return self.name
@@ -33,7 +29,6 @@ class Song(models.Model):
     SpotifyLink=models.TextField(max_length=150,blank=True,null=True)
     YoutubeLink=models.TextField(max_length=150, blank=True, null=True)
     SoundcloudLink=models.TextField(max_length=150, blank=True, null=True)
-
 
     def __str__(self):
         return self.title

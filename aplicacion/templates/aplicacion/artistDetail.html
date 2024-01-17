@@ -1,0 +1,32 @@
+{% extends 'aplicacion/base.html' %}
+{% block content %}
+<div class="col-12 pt-3">
+    <div class="row">
+        <div class="col-12 col-lg-7">
+            <ul>
+                <li class="list-group-item">Name: {{artist.name}}</li>
+                <li class="list-group-item">Born or founded in: {{artist.born}}</li>
+                <li><img src="{{ artist.picture.url }}" alt="Photo didn't load" width="500px"></li>
+            </ul>
+        </div>
+        <div class="col-12 col-lg-5">
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      Biograpy
+                    </button>
+                  </h2>
+                  <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        {{artist.biography}}
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-12 buttons text-center">
+</div>
+{% endblock %}

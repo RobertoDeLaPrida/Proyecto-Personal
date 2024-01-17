@@ -1,0 +1,37 @@
+{% extends 'aplicacion/base.html' %}
+{% block content %}
+<div class="col-12 pt-3">
+    <div class="row">
+        <div class="col-12 col-lg-7">
+            <ul>
+                <li>Name: {{song.title}}</li>
+                <li>Artist: {{song.artist}}</li>
+                <li>Release Date: {{song.release_date}}</li>
+                <li>Spotify Link: <a href="{{song.SpotifyLink}}">{{song.SpotifyLink}}</a></li>
+                <li>Youtube Link: <a href="{{song.YoutubeLink}}">{{song.YoutubeLink}}</a></li>
+                <li>Soundcloud Link: <a href="{{song.SoundcloudLink}}">{{song.SoundcloudLink}}</a></li>
+                <li><img src="{{ song.cover.url }}" alt="Photo didn't load" width="500px"></li>
+            </ul>
+        </div>
+        <div class="col-12 col-lg-5">
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      Lyrics
+                    </button>
+                  </h2>
+                  <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      {{song.lyrics}}
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-12 buttons text-center">
+    <a class="btn btn-primary" href="{% url 'edit' pk=song.pk %}"><i class="bi bi-pencil-square"></i></a>
+</div>
+{% endblock %}
