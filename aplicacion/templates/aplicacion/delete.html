@@ -1,0 +1,18 @@
+{% extends 'aplicacion/base.html' %}
+{% block content %}
+<div>
+    <form method="POST">
+        {% csrf_token %}
+        <div>
+            <h2>Are you sure u want to delete this song "{{ object }}"?</h2>
+            <img id="coverImage" src="{{ song.cover.url }}" alt="Photo didn't load" width="500px">
+            <p>It will be deleted and it won't be able to recover it</p>
+            {{ form }}
+        </div>
+        <div>
+            <button class="btn btn-danger" type="submit">Yes, delete</button>
+            <a class="btn btn-primary" href="{% url 'home' %}"><i class="bi bi-house"></i></a>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'aplicacion/base.html' %}
+{% block content %}
+<div class="col-3"></div>
+<div class="col-6 pt-4">
+    <div class="card">
+        <div class="card-body">
+            <div class="card-text">
+                <div class="row">
+                    <div class="col-4 text-center">
+                        {% if user.photo %}
+                        <img class="w-100" src="{{ user.photo.url }}" alt="">
+                        {% else %}
+                        <i class="bi bi-person-circle iconPhoto"></i>
+                        {% endif %}
+                    </div>
+                    <div class="col-7">
+                        <h1>{{ user.username }}</h1>
+                        <p>First name: {{ user.first_name }}</p>
+                        <p>Last name: {{ user.last_name }}</p>
+                        <p>Email: {{ user.email }}</p>
+                    </div>
+                    <div class="col-1 button">
+                        <a class="btn" href="{% url 'editProfile' pk=user.pk %}"><i class="bi bi-pencil-square"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card mt-4">
+        <div class="card-body">
+            <div class="row pb-2">
+                <div class="col-2">
+                    <h5 class="card-title">Friends</h5>
+                </div>
+                <div class="col-9"></div>
+                <div class="col-1">
+                    <a class="btn" href="{% url 'addFriend' pk=user.pk %}"><i class="bi bi-person-plus"></i></a>
+                </div>
+            </div>
+            <ul class="list-group">
+                {% for friend in friends %}
+                <li class="list-group-item">{{ friend.username }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="col-3"></div>
+{% endblock %}
