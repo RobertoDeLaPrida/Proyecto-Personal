@@ -1,24 +1,138 @@
 {% extends 'aplicacion/base.html' %}
 {% block content %}
-{% for songs in Song %}
+
+
+<div class="col-lg-3"></div>
+<div id="carousel1" class="carousel slide text-center col-lg-2" data-bs-ride="carousel">
+  <h3 class="text-center pt-4">Most reviewed</h3>
+  <div class="carousel-inner">
+    {% if most_reviewed_songs %}
+      <div class="carousel-item active">
+        <div class="card col-12 shadow song">
+          <a href="{% url 'detail' pk=most_reviewed_songs.0.pk %}">
+            <div class="p-3">
+              <img src="{{ most_reviewed_songs.0.cover.url }}" class="card-img-top" alt="Photo didn't load" height="250px">
+            </div>
+          </a>
+          <div class="card-body">
+              <div class="text-center">
+                <div class=""><b>{{ most_reviewed_songs.0.title }}</b></div>
+              </div>    
+          </div>
+        </div>
+      </div>
+      {% for song in most_reviewed_songs|slice:"1:" %}
+      <div class="carousel-item">
+        <div class="card col-12 shadow song">
+          <a href="{% url 'detail' pk=song.pk %}">
+            <div class="p-3">
+              <img src="{{ song.cover.url }}" class="card-img-top" alt="Photo didn't load" height="250px">
+            </div>
+          </a>
+          <div class="card-body">
+              <div class="text-center">
+                <div class=""><b>{{ song.title }}</b></div>
+              </div>    
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carousel1" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carousel1" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<div class="col-lg-2"></div>
+<div id="carousel2" class="carousel slide text-center col-lg-2" data-bs-ride="carousel">
+  <h3 class="text-center pt-4">Commented by friends</h3>
+  <div class="carousel-inner">
+    {% if friend_song %}
+      <div class="carousel-item active">
+        <div class="card col-12 shadow song">
+          <a href="{% url 'detail' pk=friend_song.0.pk %}">
+            <div class="p-3">
+              <img src="{{ friend_song.0.cover.url }}" class="card-img-top" alt="Photo didn't load" height="250px">
+            </div>
+          </a>
+          <div class="card-body">
+              <div class="text-center">
+                <div class=""><b>{{ friend_song.0.title }}</b></div>
+              </div>    
+          </div>
+        </div>
+      </div>
+      {% for song in friend_song|slice:"1:" %}
+      <div class="carousel-item">
+        <div class="card col-12 shadow song">
+          <a href="{% url 'detail' pk=song.pk %}">
+            <div class="p-3">
+              <img src="{{ song.cover.url }}" class="card-img-top" alt="Photo didn't load" height="250px">
+            </div>
+          </a>
+          <div class="card-body">
+              <div class="text-center">
+                <div class=""><b>{{ song.title }}</b></div>
+              </div>    
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carousel2" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carousel2" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<div class="col-lg-3"></div>
+
+
+<h2 class="text-center pt-4">All songs</h2>
+{% for song in Song %}
 <div class="col-6 pt-4 col-lg-2">
-  <div class="card col-12">
-    <a href="{% url 'detail' pk=songs.pk %}"><img src="{{ songs.cover.url }}" class="card-img-top" alt="Photo didn't load" height="300px"></a>
+  <div class="card col-12 shadow song">
+    <a href="{% url 'detail' pk=song.pk %}">
+      <div class="p-3">
+        <img src="{{ song.cover.url }}" class="card-img-top" alt="Photo didn't load" height="250px">
+      </div>
+    </a>
     <div class="card-body">
-      <p class="card-text">
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">{{songs.title}}</li>
-          <li class="list-group-item">
-            {% for artist in songs.artist.all %}
+        <div class="text-center">
+          <div class=""><b>{{song.title}}</b></div>
+          <div class="">
+            {% for artist in song.artist.all %}
               {{ artist.name }}
             {% endfor %} 
-          </li>
-          <li class="list-group-item">{{songs.release_date}}</li>
-          <a href="{{ songs.SpotifyLink}}" target="_blank"><li class="list-group-item"><i class="bi bi-spotify fs-2"></i></li></a>
-          <a href="{{ songs.YoutubeLink }}" target="_blank"><li class="list-group-item"><i class="bi bi-youtube fs-2"></i></li></a>
-          <a href="{{ songs.SoundcloudLink }}" target="_blank"><li class="list-group-item"><img src="../../../media/svg/soundcloud-svgrepo-com.svg" height="40px" alt="Soundlcoud icon didn't load"></li></a>
-        </ul>
-      </p>    
+          </div>
+          <div class="">{{song.release_date}}</div>
+          <div class="row text-center align-items-center d-flex icons">
+            <div class="col-4">
+              <a href="{{ song.SpotifyLink}}" target="_blank"><i class="spotify bi bi-spotify fs-2"></i></a>
+            </div>
+            <div class="col-4">
+              <a href="{{ song.YoutubeLink }}" target="_blank"><i class="yt bi bi-youtube fs-2"></i></a>          
+            </div>
+            <div class="col-4">
+            <a href="{{ song.SoundcloudLink }}" target="_blank"><img src="../../../media/svg/soundcloud-svgrepo-com.svg" height="40px" alt="Soundlcoud icon didn't load"></a>
+            </div>
+          </div>
+          {% if user.is_staff %}
+          <div class="list-group-item text-center">
+            <a class="btn btn-primary" href="{% url 'edit' pk=song.pk %}"><i class="bi bi-pencil-square"></i></a>
+            <a class="btn btn-danger" href="{% url 'delete' pk=song.pk %}"><i class="bi bi-trash3"></i></a>
+          </div>   
+          {% endif %}
+        </div>    
     </div>
   </div>
 </div>

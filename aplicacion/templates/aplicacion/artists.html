@@ -5,11 +5,15 @@
     <div class="card col-12">
       <a href="{% url 'artistDetail' pk=artist.pk %}"><img src="{{ artist.picture.url }}" class="card-img-top" alt="Photo didn't load" height="300px"></a>
       <div class="card-body">
-        <p class="card-text">
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">{{artist.name}}</li>
-          </ul>
-        </p>    
+        <h3 class="card-title text-center">
+          {{artist.name}}
+        </h3>
+        <div class="card-body text-center">
+          {% if user.is_staff %}
+            <a class="btn btn-primary" href="{% url 'editArtist' pk=artist.pk %}"><i class="bi bi-pencil-square"></i></a>
+            <a class="btn btn-danger" href="{% url 'deleteArtist' pk=artist.pk %}"><i class="bi bi-trash3"></i></a>
+          {% endif %}
+        </div>
       </div>
     </div>
   </div>

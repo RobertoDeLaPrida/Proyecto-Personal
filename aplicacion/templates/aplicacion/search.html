@@ -3,24 +3,28 @@
 <div class="col-12">
     <h2>Showing results for: "{{ query }}"</h2>
 </div>
-</div>
 <div class="row text-center">
-{% if results %}
-    {% for songs in results %}
-    <div class="card col-2 text-center m-2">
-        <img src="{{ songs.cover.url }}" class="card-img-top" alt="La imagen no ha cargado">
-        <h3>Title: <a>"{{ songs.title }}"</a></h3>
-            {% for artist in songs.artist.all %}
-                <p>Artist: {{ artist.name }}</p>
-            {% endfor %}    
-    </div>
-    {% endfor %}
-    {% else %}
-    <div class="col-12">
-        <i class="bi bi-emoji-frown-fill fs-1"></i>
-        <h3>No results matched.</h3>
+    {% if results %}
+        {% for songs in results %}
+        <div class="card col-2 shadow song m-3">
+            <a href="{% url 'detail' pk=songs.pk %}">
+            <div class="p-3">
+                <img src="{{ songs.cover.url }}" class="card-img-top" alt="Photo didn't load" height="250px">
+            </div>
+            </a>
+            <div class="card-body p-0">
+                <div class="text-center">
+                <div class=""><h3><b>{{ songs.title }}</b></h3></div>
+                <div>Artist:
+                    {% for artist in songs.artist.all %}
+                    {{ artist.name }}
+                    {% endfor %} 
+                </div>
+                </div>    
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
     </div>
 </div>
-</div>
-{% endif %}
 {% endblock %}

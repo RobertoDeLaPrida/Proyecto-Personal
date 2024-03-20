@@ -1,7 +1,62 @@
-.card{
+body{
+    background-color: black !important;
+    color: white !important;
+}
+nav{
+    background-color: #121212 !important;
+}
+a{
+    color: white !important;
+}
+.song{
     transition: all 0.2s;
+    background-color: #121212 !important;
 }
-.card:hover{
-    transform:  translate(0px, -15px)
+.card-body{
+    color: white !important;
+    text-decoration: none;
 }
-
+.song:hover{
+    transform:  translate(0px, -15px);
+    background-color: #242424 !important;
+}
+.song:hover + .card-body{
+    background-color: #242424 !important;
+}
+.yt {
+    color:#ff0000;
+}
+.spotify{
+    color: #1ed760;
+}
+.card{
+    background-color: #121212 !important;
+    color: white !important;
+}
+.accordion-button{
+    background-color: #121212 !important;
+    color: white !important;
+}
+.accordion-body{
+    background-color: #121212 !important;
+    color: white !important;
+}
+.icon{
+    color: white !important;
+}
+.search-button{
+    color: #1ed760 !important;
+}
+.list-group-item{
+    background-color: #242424 !important;
+    color: white !important;
+}
+.profilePhoto{
+    width: 40px;
+}
+.iconPhoto{
+    font-size: 125px;
+}
+.review{
+    color: white !important;
+}

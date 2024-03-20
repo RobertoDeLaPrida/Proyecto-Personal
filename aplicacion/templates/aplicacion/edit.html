@@ -3,10 +3,10 @@
 <div class="container-fluid text-center">
     <div class="row p-2">
     <div class="form">
-            <form action="{% url 'create' %}" enctype="multipart/form-data" method="post">
+            <form action="{% url 'edit' pk=song.pk %}" enctype="multipart/form-data" method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button class="btn btn-primary" type="submit">Edit song</button>
+                <button class="btn btn-primary" type="submit">Confirm changes</button>
             </form>
         </div>
     </div>
